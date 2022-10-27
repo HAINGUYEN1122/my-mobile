@@ -6,6 +6,8 @@ import HomeScreen from "./screens/homeScreen/homeScreen";
 import MainScreen from "./screens/mainScreen/mainScreen";
 import { AntDesign } from "@expo/vector-icons";
 import { Icon } from "native-base";
+import * as Notifications from 'expo-notifications';
+
 const Tab = createBottomTabNavigator();
 
 // Define the config
@@ -13,7 +15,13 @@ const config = {
   useSystemColorMode: false,
   initialColorMode: "dark",
 };
-
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 // extend the theme
 export const theme = extendTheme({ config });
 type MyThemeType = typeof theme;
